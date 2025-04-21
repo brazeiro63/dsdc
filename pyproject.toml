@@ -1,0 +1,8 @@
+[project]
+name = "dsdc-site"
+description = "Site institucional bilíngue da DSDC Tecnologia da Informação"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[tool.uv]
+# Configuração para o gerenciador de pacotes UV

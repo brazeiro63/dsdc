@@ -1,0 +1,53 @@
+msgid "Nome"
+msgstr "Nome"
+
+msgid "E-mail"
+msgstr "E-mail"
+
+msgid "Mensagem"
+msgstr "Mensagem"
+
+msgid "Enviar"
+msgstr "Enviar"
+
+msgid "Lead recebido com sucesso! Entraremos em contato em breve."
+msgstr "Lead recebido com sucesso! Entraremos em contato em breve."
+
+msgid "Fale conosco"
+msgstr "Fale conosco"
+
+msgid "Nossas atividades principais:"
+msgstr "Nossas atividades principais:"
+
+msgid "Consultoria em Tecnologia da Informação"
+msgstr "Consultoria em Tecnologia da Informação"
+
+msgid "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
+msgstr "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
+
+msgid "Portais, provedores de conteúdo e outros serviços de informação na internet"
+msgstr "Portais, provedores de conteúdo e outros serviços de informação na internet"
+
+msgid "Desenvolvimento e licenciamento de programas de computador customizáveis"
+msgstr "Desenvolvimento e licenciamento de programas de computador customizáveis"
+
+msgid "Desenvolvimento de programas de computador sob encomenda"
+msgstr "Desenvolvimento de programas de computador sob encomenda"
+
+msgid "Desenvolvimento e licenciamento de programas de computador não-customizáveis"
+msgstr "Desenvolvimento e licenciamento de programas de computador não-customizáveis"
+
+msgid "Ênfase:"
+msgstr "Ênfase:"
+
+msgid "Criação de bots de atendimento a clientes pelo WhatsApp"
+msgstr "Criação de bots de atendimento a clientes pelo WhatsApp"
+
+msgid "Automação de processos de negócio"
+msgstr "Automação de processos de negócio"
+
+msgid "Todos os direitos reservados."
+msgstr "Todos os direitos reservados."
+
+msgid "Site desenvolvido com Flask"
+msgstr "Site desenvolvido com Flask"

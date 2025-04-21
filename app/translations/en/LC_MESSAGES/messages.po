@@ -1,0 +1,53 @@
+msgid "Nome"
+msgstr "Name"
+
+msgid "E-mail"
+msgstr "Email"
+
+msgid "Mensagem"
+msgstr "Message"
+
+msgid "Enviar"
+msgstr "Send"
+
+msgid "Lead recebido com sucesso! Entraremos em contato em breve."
+msgstr "Lead received successfully! We will contact you soon."
+
+msgid "Fale conosco"
+msgstr "Contact us"
+
+msgid "Nossas atividades principais:"
+msgstr "Our main activities:"
+
+msgid "Consultoria em Tecnologia da Informação"
+msgstr "IT Consulting"
+
+msgid "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet"
+msgstr "Data processing, application service providers, and internet hosting services"
+
+msgid "Portais, provedores de conteúdo e outros serviços de informação na internet"
+msgstr "Portals, content providers, and other internet information services"
+
+msgid "Desenvolvimento e licenciamento de programas de computador customizáveis"
+msgstr "Development and licensing of customizable computer programs"
+
+msgid "Desenvolvimento de programas de computador sob encomenda"
+msgstr "Development of custom computer programs"
+
+msgid "Desenvolvimento e licenciamento de programas de computador não-customizáveis"
+msgstr "Development and licensing of non-customizable computer programs"
+
+msgid "Ênfase:"
+msgstr "Focus:"
+
+msgid "Criação de bots de atendimento a clientes pelo WhatsApp"
+msgstr "Creation of customer service bots for WhatsApp"
+
+msgid "Automação de processos de negócio"
+msgstr "Business process automation"
+
+msgid "Todos os direitos reservados."
+msgstr "All rights reserved."
+
+msgid "Site desenvolvido com Flask"
+msgstr "Site developed with Flask"

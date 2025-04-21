@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DSDC Tecnologia da Informação</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/png" href="/static/img/favicon.png">
+</head>
+<body>
+    <nav class="main-menu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/quem-somos">Quem somos</a></li>
+            <li><a href="/servicos">Serviços</a></li>
+            <li><a href="/clientes">Clientes</a></li>
+        </ul>
+        <div class="lang-switch-menu">
+            <a href="?lang=pt" class="{% if get_locale() == 'pt' %}active{% endif %}">PT</a>
+            <a href="?lang=en" class="{% if get_locale() == 'en' %}active{% endif %}">EN</a>
+        </div>
+    </nav>
+    {% block content %}{% endblock %}
+    <footer class="main-footer">
+        <div class="footer-info">
+            {{ _('Dos Santos e De Carvalho Tecnologia da Informação Ltda.') }}<br>
+            CNPJ: 60.321.116/0001-54<br>
+            Tel: (xx) xxxx-xxxx
+        </div>
+    </footer>
+</body>
+</html>
