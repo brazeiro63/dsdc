@@ -1,0 +1,33 @@
+<!-- app/templates/admin/leads.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Leads Recebidos</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Mensagem</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lead in leads %}
+            <tr>
+                <td>{{ lead.id }}</td>
+                <td>{{ lead.name }}</td>
+                <td>{{ lead.email }}</td>
+                <td>{{ lead.phone }}</td>
+                <td>{{ lead.message }}</td>
+                <td>{{ lead.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

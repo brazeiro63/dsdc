@@ -1,25 +1,51 @@
 from flask import Flask, request
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_babel import Babel
-from flask_wtf.csrf import CSRFProtect
 
-def create_app():
+# Crie a instância do SQLAlchemy aqui para ser compartilhada
+db = SQLAlchemy()
+migrate = Migrate()
+babel = Babel()
+
+
+def get_locale():
+    # Retorna o idioma padrão (você pode personalizar esta lógica)
+    return "pt"  # ou request.accept_languages.best_match(['en', 'pt', 'es'])
+
+
+def create_app(config_object=None):
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'troque-por-uma-chave-segura'
-    app.config['BABEL_DEFAULT_LOCALE'] = 'pt'
-    app.config['BABEL_SUPPORTED_LOCALES'] = ['pt', 'en']
-    csrf = CSRFProtect(app)
-    babel = Babel(app)
 
-    def get_locale():
-        lang = request.args.get('lang')
-        if lang in app.config['BABEL_SUPPORTED_LOCALES']:
-            return lang
-        return request.accept_languages.best_match(app.config['BABEL_SUPPORTED_LOCALES'])
+    # Configuração
+    if config_object:
+        app.config.from_object(config_object)
+    else:
+        # Configuração padrão
+        app.config["SECRET_KEY"] = "chave-secreta-temporaria"
+        app.config["SQLALCHEMY_DATABASE_URI"] = (
+            "postgresql://dsdc_user:deumaoito@localhost:5433/dsdc_database"
+        )
+        app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+        app.config["BABEL_DEFAULT_LOCALE"] = "pt"
+        app.config["BABEL_SUPPORTED_LOCALES"] = ["pt", "en"]
 
-    app.jinja_env.globals['get_locale'] = get_locale
-    babel.locale_selector_func = get_locale
+    # Inicializa extensões com o app
+    db.init_app(app)
+    migrate.init_app(app, db)
+    babel.init_app(app, locale_selector=get_locale)
 
-    from . import routes
-    app.register_blueprint(routes.bp)
+    # Importa e registra blueprints
+    from app.routes import main_bp
+
+    app.register_blueprint(main_bp)
+
+    # Cria tabelas do banco de dados
+    with app.app_context():
+        db.create_all()
+
+    @app.context_processor
+    def inject_functions():
+        return dict(get_locale=lambda: "pt-BR")
 
     return app

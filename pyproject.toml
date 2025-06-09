@@ -3,6 +3,16 @@ name = "dsdc-site"
 description = "Site institucional bilíngue da DSDC Tecnologia da Informação"
 version = "0.1.0"
 requires-python = ">=3.10"
+dependencies = [
+    "flask-babel>=4.0.0",
+    "flask>=3.1.1",
+    "flask-wtf>=1.2.2",
+    "flask-sqlalchemy>=3.1.1",
+    "psycopg2-binary>=2.9.10",
+    "email-validator>=2.2.0",
+    "flask-migrate>=4.1.0",
+    "flask-cors>=6.0.0",
+]
 
 [tool.uv]
 # Configuração para o gerenciador de pacotes UV
