@@ -24,7 +24,7 @@ def create_app(config_object=None):
         # Configuração padrão
         app.config["SECRET_KEY"] = "chave-secreta-temporaria"
         app.config["SQLALCHEMY_DATABASE_URI"] = (
-            "postgresql://dsdc_user:deumaoito@localhost:5433/dsdc_database"
+            "postgresql://dsdc_user:deumaoito@db:5432/dsdc_database"
         )
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["BABEL_DEFAULT_LOCALE"] = "pt"

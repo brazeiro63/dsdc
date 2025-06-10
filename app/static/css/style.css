@@ -5,6 +5,7 @@ body {
     background: url('/static/img/tech-bg.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #2d2d2d;
+    font-size: 1.2rem;
 }
 .overlay {
     background: rgba(255, 255, 255, 0.80);
@@ -22,7 +23,7 @@ header {
     letter-spacing: 2px;
 }
 .subtitle {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #5e5e5e;
     margin-bottom: 0.5rem;
 }
@@ -61,7 +62,7 @@ main {
     border-radius: 14px;
     box-shadow: 0 2px 12px 0 #cfd8fc;
     color: #444;
-    font-size: 1.08em;
+    font-size: 0.98em;
     font-weight: 500;
     width: 170px;
     height: 170px;
@@ -103,7 +104,7 @@ form input, form textarea {
     border: 1px solid #d2d2f0;
     border-radius: 7px;
     background: #f6f6ff;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 form button, form input[type=submit] {
     background: #7b6cf6;
@@ -175,6 +176,7 @@ footer {
     text-decoration: none;
     font-weight: 500;
     margin-left: 1rem;
+    padding: 0.5rem;
     font-size: 1.1rem;
 }
 .lang-switch a.active {
@@ -233,6 +235,7 @@ footer {
     gap: 0.5rem;
     align-items: center;
     margin-left: 1.5rem;
+    margin-right: 1.5rem;
 }
 .lang-switch-menu a {
     color: #fff;

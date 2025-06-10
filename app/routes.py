@@ -25,6 +25,11 @@ def index():
     
     return render_template('index.html', form=form)
 
+# Rota para a página Quem Somos
+@main_bp.route('/quem-somos')
+def quem_somos():
+    return render_template('quem_somos.html')
+
 # API endpoint para receber leads via AJAX (opcional)
 @main_bp.route('/api/leads', methods=['POST'])
 def create_lead_api():
