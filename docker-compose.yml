@@ -1,22 +1,44 @@
 version: '3.8'
 
 services:
-  dsdc_app:
-    build: .
-    container_name: dsdc_app
-    restart: always
+  app:
+    build:
+      context: /home/brazeiro63/dsdc
+      dockerfile: Dockerfile
+    volumes:
+      - /home/brazeiro63/dsdc:/app
+    env_file:
+      - .env
     networks:
-      - DSDCNet  # Rede onde está o postgres existente
-    environment:
-      - DATABASE_URL=postgresql://dsdc_user:3c65f2d9dad74920cf363e96ba6ace45@postgres:5432/dsdc_database  # Ajuste conforme suas credenciais
-      - SECRET_KEY=3c65f2d9dad74920cf363e96ba6ace45
-      - FLASK_ENV=production
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.dsdc.rule=Host(`www.dsdctecnologia.com.br`)"
-      - "traefik.http.routers.dsdc.entrypoints=websecure"
-      - "traefik.http.routers.dsdc.tls.certresolver=letsencrypt"
-      - "traefik.http.services.dsdc.loadbalancer.server.port=8000"
+      - DSDCNet
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+  web:
+    image: nginx:alpine
+    volumes:
+      - /home/brazeiro63/dsdc/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /home/brazeiro63/dsdc/app/static:/usr/share/nginx/html/static
+    networks:
+      - DSDCNet
+    depends_on:
+      - app
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        # Router HTTP: redireciona para HTTPS
+        - "traefik.http.routers.dsdc-http.rule=Host(`dsdctecnologia.com.br`) || Host(`www.dsdctecnologia.com.br`)"
+        - "traefik.http.routers.dsdc-http.entrypoints=web"
+        - "traefik.http.routers.dsdc-http.middlewares=redirect-to-https"
+        - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+        # Router HTTPS: serve o site com TLS
+        - "traefik.http.routers.dsdc.rule=Host(`dsdctecnologia.com.br`) || Host(`www.dsdctecnologia.com.br`)"
+        - "traefik.http.routers.dsdc.entrypoints=websecure"
+        - "traefik.http.routers.dsdc.tls.certresolver=letsencryptresolver"
+        # Diga explicitamente ao Traefik qual porta usar:
+        - "traefik.http.services.dsdc.loadbalancer.server.port=80"
 
 networks:
   DSDCNet:

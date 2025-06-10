@@ -4,6 +4,7 @@ from app.models import Lead
 from app import db
 
 main_bp = Blueprint('main', __name__)
+lead_bp = Blueprint('load', __name__)
 
 @main_bp.route('/', methods=['GET', 'POST'])
 @main_bp.route('/index', methods=['GET', 'POST'])
@@ -51,7 +52,7 @@ def create_lead_api():
     return jsonify({"message": "Lead registrado com sucesso", "id": lead.id}), 201
 
 # Rota para visualizar leads (protegida por autenticação em produção)
-@main_bp.route('/admin/leads')
+@lead_bp.route('/admin/leads')
 def view_leads():
     # Aqui você adicionaria autenticação em produção
     leads = Lead.query.order_by(Lead.created_at.desc()).all()
