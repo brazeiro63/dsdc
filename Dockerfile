@@ -1,10 +1,21 @@
-# Dockerfile para o site DSDC
 FROM python:3.11-slim
+
 WORKDIR /app
-COPY requirements.txt ./
-RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Instalar dependências
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install gunicorn uvicorn
+
+# Copiar o código da aplicação
 COPY . .
-ENV FLASK_APP=app
-ENV FLASK_RUN_HOST=0.0.0.0
-EXPOSE 5000
-CMD ["flask", "run"]
+
+# Expor a porta que a aplicação usará
+EXPOSE 8000
+
+# Comando para iniciar a aplicação
+CMD [ \
+    "gunicorn", \
+    "-w", "4", \
+    "-k", "uvicorn.workers.UvicornWorker", \
+    "app:create_app()", "-b", "0.0.0.0:8000"]

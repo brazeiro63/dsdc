@@ -1,7 +1,12 @@
+import os
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_babel import Babel
+from app.config import Config
+from app.models import db
+
+config_object = Config()
 
 # Crie a instância do SQLAlchemy aqui para ser compartilhada
 db = SQLAlchemy()
@@ -22,10 +27,8 @@ def create_app(config_object=None):
         app.config.from_object(config_object)
     else:
         # Configuração padrão
-        app.config["SECRET_KEY"] = "chave-secreta-temporaria"
-        app.config["SQLALCHEMY_DATABASE_URI"] = (
-            "postgresql://dsdc_user:deumaoito@db:5432/dsdc_database"
-        )
+        app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+        app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["BABEL_DEFAULT_LOCALE"] = "pt"
         app.config["BABEL_SUPPORTED_LOCALES"] = ["pt", "en"]

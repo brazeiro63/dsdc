@@ -1,11 +1,23 @@
 version: '3.8'
+
 services:
-  dsdc-site:
+  dsdc_app:
     build: .
-    container_name: dsdc-site
-    restart: unless-stopped
-    ports:
-      - "5000:5000"
+    container_name: dsdc_app
+    restart: always
+    networks:
+      - DSDCNet  # Rede onde está o postgres existente
     environment:
-      - FLASK_RUN_HOST=0.0.0.0
-      - FLASK_APP=app
+      - DATABASE_URL=postgresql://dsdc_user:3c65f2d9dad74920cf363e96ba6ace45@postgres:5432/dsdc_database  # Ajuste conforme suas credenciais
+      - SECRET_KEY=3c65f2d9dad74920cf363e96ba6ace45
+      - FLASK_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dsdc.rule=Host(`www.dsdctecnologia.com.br`)"
+      - "traefik.http.routers.dsdc.entrypoints=websecure"
+      - "traefik.http.routers.dsdc.tls.certresolver=letsencrypt"
+      - "traefik.http.services.dsdc.loadbalancer.server.port=8000"
+
+networks:
+  DSDCNet:
+    external: true
