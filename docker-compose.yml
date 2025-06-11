@@ -1,31 +1,36 @@
 version: '3.8'
 
 services:
-  app:
-    build:
-      context: /home/brazeiro63/dsdc
-      dockerfile: Dockerfile
+  dsdc_app:
+    image: brazeiro63/dsdc:latest
+    # container_name: dsdc_app
+    restart: always
+    environment:
+      - FLASK_APP=run.py
+      - FLASK_ENV=production
+      - SECRET_KEY=3c65f2d9dad74920cf363e96ba6ace45
+      - DATABASE_URL=postgresql://dsdc_user:3c65f2d9dad74920cf363e96ba6ace45@postgres:5432/dsdc_database
+    ports:
+      - "5000:8000"
+    networks:
+      - DSDCNet
+    command: ["gunicorn", "-w", "4", "run:app", "-b", "0.0.0.0:8000"]
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+        
+  web:
+    image: nginx:alpine
     volumes:
-      - /home/brazeiro63/dsdc:/app
-    env_file:
-      - .env
+      - /home/brazeiro63/dsdc/nginx/default.conf:/etc/nginx/conf.d/dsdc.conf
+      - /home/brazeiro63/dsdc/app/static:/usr/share/nginx/html/static
     networks:
       - DSDCNet
     deploy:
       restart_policy:
         condition: on-failure
         max_attempts: 3
-
-  web:
-    image: nginx:alpine
-    volumes:
-      - /home/brazeiro63/dsdc/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - /home/brazeiro63/dsdc/app/static:/usr/share/nginx/html/static
-    networks:
-      - DSDCNet
-    depends_on:
-      - app
-    deploy:
       labels:
         - "traefik.enable=true"
         # Router HTTP: redireciona para HTTPS
