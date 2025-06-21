@@ -140,8 +140,8 @@ form button:hover, form input[type=submit]:hover {
     font-size: 1.55em;
     font-weight: 700;
     padding: 2.5rem 2.8rem;
-    min-width: 250px;
-    min-height: 170px;
+    min-width: 200px;
+    min-height: 140px;
     flex: 1 1 350px;
     text-align: center;
     margin-bottom: 0.5rem;
