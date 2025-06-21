@@ -272,19 +272,19 @@ footer {
         gap: 1.5rem;
     }
     .activities, .lead-form {
-        max-width: 98vw;
+        max-width: 85vw;
         min-width: unset;
     }
     .emphasis-cards {
         flex-direction: column;
         gap: 1.1rem;
-        max-width: 98vw;
+        max-width: 85vw;
     }
     .emphasis-card {
         min-width: 0;
         font-size: 1.18em;
         padding: 1.5rem 0.8rem;
-        min-height: 110px;
+        min-height: 90px;
     }
     .activity-cards {
         grid-template-columns: 1fr;
